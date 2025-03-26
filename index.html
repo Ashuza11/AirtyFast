@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AirtyFast</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2>AirtyFast</h2>
+            <ul>
+                <li><a href="#dailyActivity" class="active">Gestion Paiements</a></li>
+                <li><a href="#stockManagement">Gestion Stock</a></li>
+                <li><a href="#sellsCalculation">Gestion Ventes</a></li>
+                <li><a href="#capitalVerification">Vérification Capital</a></li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Timeline -->
+            <div class="timeline">
+                <div class="timeline-step" id="step1">Sold Initiales</div>
+                <div class="timeline-step" id="step2">Entrees & Sorties</div>
+                <div class="timeline-step" id="step3">Résumé</div>
+            </div>
+
+            <!-- Daily Activity -->
+            <section id="dailyActivity" class="content-section active">
+                <!-- Step 1: Sold Initiales -->
+                <div class="form-container" id="initials">
+                    <div class="form-section">
+                        <h3>Sold Initiales</h3>
+                        <form id="initialSoldForm">
+                            <label for="initialSold">Sold Initiales (CDF):</label>
+                            <input type="number" id="initialSold" placeholder="Entrez le montant initial" required>
+                            <button type="submit">Enregistrer</button>
+                        </form>
+                    </div>
+
+                    <!-- New Form for Cash Restant -->
+                    <div class="form-section">
+                        <h3>Cash Restant</h3>
+                        <form id="cashRestantForm">
+                            <label for="cashRestant">Cash Restant (CDF):</label>
+                            <input type="number" id="cashRestant" placeholder="Entrez le montant de cash restant"
+                                required>
+                            <button type="submit">Enregistrer</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Step 2: Entrees & Sorties -->
+                <div class="form-container" id="entriesExits" style="display: none;">
+                    <div class="form-section">
+                        <h3>Enregistrement Ventes</h3>
+                        <form id="salesForm">
+                            <label for="buyerName">Nom de l'Acheteur:</label>
+                            <input type="text" id="buyerName" list="buyerList" placeholder="Entrez le nom" required>
+                            <datalist id="buyerList"></datalist>
+
+                            <label for="network">Réseau:</label>
+                            <select id="network" required>
+                                <option value="Airtel">Airtel</option>
+                                <option value="Africell">Africell</option>
+                                <option value="Orange">Orange</option>
+                                <option value="Vodacom">Vodacom</option>
+                                <option value="AllNetWork">Tous Reseau</option>
+                            </select>
+
+                            <label for="amountPaid">Montant Payé (CDF):</label>
+                            <input type="number" id="amountPaid" placeholder="Entrez le montant payé" required>
+
+                            <button type="submit">Ajouter la Vente</button>
+                        </form>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Enregistrement Dépenses</h3>
+                        <form id="spendingForm">
+                            <label for="recipientName">Nom du Bénéficiaire:</label>
+                            <input type="text" id="recipientName" placeholder="Entrez le nom" required>
+
+                            <label for="amountSpent">Montant Dépensé (CDF):</label>
+                            <input type="number" id="amountSpent" placeholder="Entrez le montant" required>
+
+                            <label for="purpose">Motif de la Dépense:</label>
+                            <input type="text" id="purpose" placeholder="Entrez le motif" required>
+
+                            <button type="submit">Ajouter la Dépense</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Step 3: Summary -->
+                <div class="results" id="summary" style="display: none;">
+                    <h3>Résumé</h3>
+                    <div class="summary-container">
+                        <!-- Left Column: Sales Records -->
+                        <div class="summary-column">
+                            <h4>Entrées (Ventes)</h4>
+                            <ul id="summarySalesList"></ul>
+                        </div>
+                        <!-- Right Column: Spending Records -->
+                        <div class="summary-column">
+                            <h4>Sorties (Dépenses)</h4>
+                            <ul id="summarySpendsList"></ul>
+                        </div>
+                    </div>
+                    <div class="totals">
+                        <p>Sold Initiales: <span id="initialSoldDisplay">0</span> CDF</p>
+                        <p>Cash Restant: <span id="cashDisplay">0</span> CDF</p>
+                        <p>Total Entrées: <span id="totalEntries">0</span> CDF</p>
+                        <p>Total Sorties: <span id="totalExits">0</span> CDF</p>
+                        <p>Solde: <span id="balance">0</span> CDF</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
