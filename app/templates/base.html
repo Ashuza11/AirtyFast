@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% if title %}
+        <title>{{ title }} - AirtyFast</title>
+    {% else %}
+    <title>AirtyFast</title>
+    {% endif %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2>AirtyFast</h2>
+            <ul>
+                <a href="{{ url_for('index') }}">Home</a>
+                <li><a href="#dailyActivity" class="active">Gestion Paiements</a></li>
+                <li><a href="#stockManagement">Gestion Stock</a></li>
+                <li><a href="#sellsCalculation">Gestion Ventes</a></li>
+                <li><a href="#capitalVerification">Vérification Capital</a></li>
+            </ul>
+        </div>
+        {% block content %}{% endblock %}
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+
+</html>
