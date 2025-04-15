@@ -114,7 +114,7 @@ class Spending(db.Model):
 
 class DailyBalance(db.Model):
     id: so.Mapped[int] = so.mapped_column(primary_key=True)
-    date: so.Mapped[date] = so.mapped_column(default=datetime.utcnow)
+    date: so.Mapped[datetime] = so.mapped_column(default=datetime.utcnow)
     initial_sold: so.Mapped[Optional[float]] = so.mapped_column(sa.Numeric(10, 2))
     remaining_cash: so.Mapped[Optional[float]] = so.mapped_column(sa.Numeric(10, 2))
 
