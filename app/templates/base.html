@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% if title %}
-        <title>{{ title }} - AirtyFast</title>
+        <title>{{ title }} - AirtFast</title>
     {% else %}
-    <title>AirtyFast</title>
+    <title>AirtFast</title>
     {% endif %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
@@ -17,9 +17,9 @@
         <!-- Sidebar -->
         <div class="sidebar">
             <h2>AirtyFast</h2>
-            <ul>
-                <a href="{{ url_for('index') }}">Home</a>
-                <li><a href="#dailyActivity" class="active">Gestion Paiements</a></li>
+            <li>
+                <li></li><a href="{{ url_for('index') }}" class="active">Home</a></li>
+                <li><a href="#dailyActivity" >Gestion Paiements</a></li>
                 <li><a href="#stockManagement">Gestion Stock</a></li>
                 <li><a href="#sellsCalculation">Gestion Ventes</a></li>
                 <li><a href="#capitalVerification">Vérification Capital</a></li>

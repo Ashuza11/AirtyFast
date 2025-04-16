@@ -1,105 +1,57 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AirtFast</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <section class="hero">
+            <h1>Transform Your Airtime Business with <span class="highlight">AirtyFast</span></h1>
+            <p>Leverage AI-powered insights to optimize your airtime distribution business. Get real-time analytics, predictive forecasting, and comprehensive financial tracking - all in one platform.</p>
+            
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-primary pulse">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Get Started - Free
+                </a>
+                <a href="#" class="btn btn-secondary">
+                    <i class="fas fa-book-open"></i>
+                    Learn More
+                </a>
+            </div>
+        </section>
 
-{% block content %}
-    <!-- Main Content -->
-    <div class="main-content">
-        <!-- Timeline -->
-        <div class="timeline">
-            <div class="timeline-step" id="step1">Sold Initiales</div>
-            <div class="timeline-step" id="step2">Entrees & Sorties</div>
-            <div class="timeline-step" id="step3">Résumé</div>
+        <div class="features">
+            <div class="feature-card">
+                <h3><i class="fas fa-chart-line"></i> Real-Time Analytics</h3>
+                <p>Monitor daily, weekly, and yearly performance with interactive dashboards and automated financial summaries in CDF.</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3><i class="fas fa-brain"></i> AI Predictions</h3>
+                <p>Get actionable insights and success/failure predictions powered by machine learning algorithms.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3><i class="fas fa-money-check-alt"></i> Capital Management</h3>
+                <p>Track investments, remaining airtime, debts, and operational expenses in real-time across all networks.</p>
+            </div>
         </div>
 
-        <!-- Daily Activity -->
-        <section id="dailyActivity" class="content-section active">
-            <!-- Step 1: Sold Initiales -->
-            <div class="form-container" id="initials">
-                <div class="form-section">
-                    <h3>Sold Initiales</h3>
-                    <form id="initialSoldForm">
-                        <label for="initialSold">Sold Initiales (CDF):</label>
-                        <input type="number" id="initialSold" placeholder="Entrez le montant initial" required>
-                        <button type="submit">Enregistrer</button>
-                    </form>
-                </div>
-
-                <!-- New Form for Cash Restant -->
-                <div class="form-section">
-                    <h3>Cash Restant</h3>
-                    <form id="cashRestantForm">
-                        <label for="cashRestant">Cash Restant (CDF):</label>
-                        <input type="number" id="cashRestant" placeholder="Entrez le montant de cash restant"
-                            required>
-                        <button type="submit">Enregistrer</button>
-                    </form>
-                </div>
-            </div>
-
-            <!-- Step 2: Entrees & Sorties -->
-            <div class="form-container" id="entriesExits" style="display: none;">
-                <div class="form-section">
-                    <h3>Enregistrement Ventes</h3>
-                    <form id="salesForm">
-                        <label for="buyerName">Nom de l'Acheteur:</label>
-                        <input type="text" id="buyerName" list="buyerList" placeholder="Entrez le nom" required>
-                        <datalist id="buyerList"></datalist>
-
-                        <label for="network">Réseau:</label>
-                        <select id="network" required>
-                            <option value="Airtel">Airtel</option>
-                            <option value="Africell">Africell</option>
-                            <option value="Orange">Orange</option>
-                            <option value="Vodacom">Vodacom</option>
-                            <option value="AllNetWork">Tous Reseau</option>
-                        </select>
-
-                        <label for="amountPaid">Montant Payé (CDF):</label>
-                        <input type="number" id="amountPaid" placeholder="Entrez le montant payé" required>
-
-                        <button type="submit">Ajouter la Vente</button>
-                    </form>
-                </div>
-
-                <div class="form-section">
-                    <h3>Enregistrement Dépenses</h3>
-                    <form id="spendingForm">
-                        <label for="recipientName">Nom du Bénéficiaire:</label>
-                        <input type="text" id="recipientName" placeholder="Entrez le nom" required>
-
-                        <label for="amountSpent">Montant Dépensé (CDF):</label>
-                        <input type="number" id="amountSpent" placeholder="Entrez le montant" required>
-
-                        <label for="purpose">Motif de la Dépense:</label>
-                        <input type="text" id="purpose" placeholder="Entrez le motif" required>
-
-                        <button type="submit">Ajouter la Dépense</button>
-                    </form>
-                </div>
-            </div>
-
-            <!-- Step 3: Summary -->
-            <div class="results" id="summary" style="display: none;">
-                <h3>Résumé</h3>
-                <div class="summary-container">
-                    <!-- Left Column: Sales Records -->
-                    <div class="summary-column">
-                        <h4>Entrées (Ventes)</h4>
-                        <ul id="summarySalesList"></ul>
-                    </div>
-                    <!-- Right Column: Spending Records -->
-                    <div class="summary-column">
-                        <h4>Sorties (Dépenses)</h4>
-                        <ul id="summarySpendsList"></ul>
-                    </div>
-                </div>
-                <div class="totals">
-                    <p>Sold Initiales: <span id="initialSoldDisplay">0</span> CDF</p>
-                    <p>Cash Restant: <span id="cashDisplay">0</span> CDF</p>
-                    <p>Total Entrées: <span id="totalEntries">0</span> CDF</p>
-                    <p>Total Sorties: <span id="totalExits">0</span> CDF</p>
-                    <p>Solde: <span id="balance">0</span> CDF</p>
-                </div>
+        <section class="hero">
+            <h2>Start Optimizing Today</h2>
+            <p>Join hundreds of successful airtime distributors using AirtyFast to grow their business</p>
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-primary pulse">
+                    <i class="fas fa-user-plus"></i>
+                    Create Free Account
+                </a>
             </div>
         </section>
     </div>
-{% endblock %}
+</body>
+</html>
