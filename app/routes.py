@@ -3,7 +3,10 @@ from app import app, db
 from flask_login import current_user, login_user, logout_user, login_required
 import sqlalchemy as sa
 from app.models import User
-from app.forms import LoginForm, RegistrationForm  # Assuming you have these forms
+
+from app.forms import LoginForm
+
+# RegistrationForm
 
 
 # Main landing page
@@ -40,32 +43,32 @@ def login():
     return render_template("login.html", title="Sign In", form=form)
 
 
-# Registration functionality
-@app.route("/register", methods=["GET", "POST"])
-def register():
-    if current_user.is_authenticated:
-        return redirect(url_for("dashboard"))
+# # Registration functionality
+# @app.route("/register", methods=["GET", "POST"])
+# def register():
+#     if current_user.is_authenticated:
+#         return redirect(url_for("dashboard"))
 
-    form = RegistrationForm()
-    if form.validate_on_submit():
-        # Check if user exists
-        existing_user = db.session.scalar(
-            sa.select(User).where(User.username == form.username.data)
-        )
-        if existing_user:
-            flash("Username already exists", "danger")
-            return redirect(url_for("register"))
+#     form = RegistrationForm()
+#     if form.validate_on_submit():
+#         # Check if user exists
+#         existing_user = db.session.scalar(
+#             sa.select(User).where(User.username == form.username.data)
+#         )
+#         if existing_user:
+#             flash("Username already exists", "danger")
+#             return redirect(url_for("register"))
 
-        # Create new user
-        user = User(username=form.username.data, email=form.email.data)
-        user.set_password(form.password.data)
-        db.session.add(user)
-        db.session.commit()
+#         # Create new user
+#         user = User(username=form.username.data, email=form.email.data)
+#         user.set_password(form.password.data)
+#         db.session.add(user)
+#         db.session.commit()
 
-        flash("Registration successful! Please login", "success")
-        return redirect(url_for("login"))
+#         flash("Registration successful! Please login", "success")
+#         return redirect(url_for("login"))
 
-    return render_template("register.html", title="Register", form=form)
+#     return render_template("register.html", title="Register", form=form)
 
 
 # Logout functionality
