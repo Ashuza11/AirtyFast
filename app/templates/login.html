@@ -1,55 +1,33 @@
-{% extends "forms.html" %}
+{% extends "auth.html" %}
+{% block title %}Login{% endblock %}
+
+{% block header %}
+    <div class="nav">
+        <a href="{{ url_for('home') }}">
+            <i class="fas fa-rocket"></i> AirtyFast
+        </a>
+    </div>
+    <p>Manage your airtime distribution network</p>
+{% endblock %}
 
 {% block content %}
-    <div class="container">
-        <nav style="padding: 1rem 0; margin-bottom: 2rem;">
-            <a href="{{ url_for('home') }}" style="color: white; text-decoration: none; font-size: 1.5rem; font-weight: bold;">
-                <i class="fas fa-rocket"></i> AirtyFast
-            </a>
-        </nav>
-
-        <div class="auth-container">
-            <div class="auth-header">
-                <h2>Welcome Back to Your Airtime Hub</h2>
-                <p>Track, analyze, and grow your airtime business</p>
-            </div>
-
-            {% with messages = get_flashed_messages(with_categories=true) %}
-                {% if messages %}
-                    {% for category, message in messages %}
-                        <div class="alert alert-{{ category }}" style="color: {% if category == 'danger' %}#ff4444{% else %}#00c853{% endif %}; margin-bottom: 1rem;">
-                            {{ message }}
-                        </div>
-                    {% endfor %}
-                {% endif %}
-            {% endwith %}
-
-            <form method="POST" action="{{ url_for('login') }}">
-                {{ form.hidden_tag() }}
-                
-                <div class="form-group">
-                    <label class="form-label" for="username">
-                        <i class="fas fa-user"></i> Vendor ID
-                    </label>
-                    {{ form.username(class="form-input", placeholder="Enter your vendor ID") }}
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label" for="password">
-                        <i class="fas fa-lock"></i> Password
-                    </label>
-                    {{ form.password(class="form-input", placeholder="Enter your password") }}
-                </div>
-
-                <button type="submit" class="btn btn-primary" style="width: 100%;">
-                    <i class="fas fa-sign-in-alt"></i> Access Dashboard
-                </button>
-            </form>
-
-            <div class="form-footer">
-                <p>New to AirtyFast? <a href="#">Create Account</a></p>
-                <p><a href="#" style="color: #2962ff;">Forgot Password?</a></p>
-            </div>
+    <form method="POST" action="{{ url_for('login') }}">
+        {{ form.hidden_tag() }}
+        
+        <div class="form-group">
+            {{ form.username(class="form-input", placeholder="Vendor ID") }}
         </div>
-    </div>
+
+        <div class="form-group">
+            {{ form.password(class="form-input", placeholder="Password") }}
+        </div>
+
+        <button type="submit" class="btn-primary">
+            Access Dashboard
+        </button>
+
+        <div class="form-footer">
+            <p><a href="{{ url_for('home') }}">← Return to homepage</a></p>
+        </div>
+    </form>
 {% endblock %}
