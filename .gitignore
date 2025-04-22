@@ -1,0 +1,55 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Flask instance folder (contains config or uploads, often not tracked)
+instance/
+
+# Environment variables
+.env
+.env.*
+
+# Flask cache and session files
+*.log
+*.pot
+*.mo
+
+# Pytest cache
+.pytest_cache/
+
+# Coverage reports
+htmlcov/
+.coverage
+.tox/
+.nox/
+.cache/
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+
+# MyPy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# VS Code and other IDE/editor settings
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Database files (if local SQLite used)
+*.sqlite3
+*.db
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# MacOS system files
+.DS_Store

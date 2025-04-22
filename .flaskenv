@@ -1,0 +1,2 @@
+FLASK_APP=airtfast.py
+FLASK_ENV=development

@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}User Management{% endblock %}
+
+{% block content %}
+<h2>User Management</h2>
+<button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addVendorModal">
+    <i class="fas fa-plus"></i> Add Vendor
+</button>
+  
+
+<table class="user-table">
+    <thead>
+        <tr>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.name }} {% if user.is_current %}<span class="badge">YOU</span>{% endif %}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.role }}</td>
+            <td><span class="{{ 'status-active' if user.active else 'status-inactive' }}">{{ 'Active' if user.active else 'Inactive' }}</span></td>
+            <td><i class="fas fa-ellipsis-v"></i></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- Modal: Add Vendor -->
+<div class="modal fade" id="addVendorModal" tabindex="-1" aria-labelledby="addVendorModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content p-3">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addVendorModalLabel">Add Vendor</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form method="POST" action="{{ url_for('add_vendor') }}">
+          {{ vendor_form.hidden_tag() }}
+          <div class="modal-body">
+            <div class="mb-3">
+              {{ vendor_form.username.label(class="form-label") }}
+              {{ vendor_form.username(class="form-control") }}
+            </div>
+            <div class="mb-3">
+              {{ vendor_form.email.label(class="form-label") }}
+              {{ vendor_form.email(class="form-control") }}
+            </div>
+            <div class="mb-3">
+              {{ vendor_form.phone.label(class="form-label") }}
+              {{ vendor_form.phone(class="form-control") }}
+            </div>
+            <div class="mb-3">
+              {{ vendor_form.password.label(class="form-label") }}
+              {{ vendor_form.password(class="form-control") }}
+            </div>
+            <div class="mb-3">
+              {{ vendor_form.confirm_password.label(class="form-label") }}
+              {{ vendor_form.confirm_password(class="form-control") }}
+            </div>
+            <div class="form-check">
+              {{ vendor_form.is_active(class="form-check-input") }}
+              {{ vendor_form.is_active.label(class="form-check-label") }}
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-success">{{ vendor_form.submit.label.text }}</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+{% endblock %}
