@@ -22,10 +22,10 @@
     <tbody>
         {% for user in users %}
         <tr>
-            <td>{{ user.name }} {% if user.is_current %}<span class="badge">YOU</span>{% endif %}</td>
+            <td>{{ user.username }} {% if user.is_current %}<span class="badge">YOU</span>{% endif %}</td>
             <td>{{ user.email }}</td>
             <td>{{ user.role }}</td>
-            <td><span class="{{ 'status-active' if user.active else 'status-inactive' }}">{{ 'Active' if user.active else 'Inactive' }}</span></td>
+            <td><span class="{{ 'status-active' if user.active else 'status-inactive' }}">{{ 'Active' if user.is_active else 'Inactive' }}</span></td>
             <td><i class="fas fa-ellipsis-v"></i></td>
         </tr>
         {% endfor %}

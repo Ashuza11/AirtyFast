@@ -9,12 +9,12 @@ from app.models import User
 class LoginForm(FlaskForm):
     username = StringField(
         "Vendor ID",
-        validators=[DataRequired(message=" Vendor ID is required")],
+        validators=[DataRequired()],
         render_kw={"placeholder": "Your business ID"},
     )
     password = PasswordField(
         "Password",
-        validators=[DataRequired(message=" Password is required")],
+        validators=[DataRequired()],
         render_kw={"placeholder": "Enter your password"},
     )
     remember_me = BooleanField("Remember Me")
@@ -23,14 +23,14 @@ class LoginForm(FlaskForm):
     def validate_username(self, username):
         user = db.session.scalar(sa.select(User).where(User.username == username.data))
         if not user:
-            raise ValidationError(" Vendor ID not registered")
+            raise ValidationError(" Invalid Vendor ID and / or password")
 
     def validate_password(self, password):
         user = db.session.scalar(
             sa.select(User).where(User.username == self.username.data)
         )
         if user and not user.check_password(password.data):
-            raise ValidationError("Incorrect password")
+            raise ValidationError("Invalid Vendor ID and / or password")
 
 
 class RegistrationForm(FlaskForm):
